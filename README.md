@@ -18,7 +18,7 @@ Since this tool is not yet published on npm, you need to clone and set it up loc
 
 ```bash
 # Clone the repository
-git clone [https://github.com/yourusername/scafold-repo.git](https://github.com/JohnOGama/next-js-scafold)
+git clone https://github.com/yourusername/scafold-repo.git](https://github.com/JohnOGama/next-js-scafold
 cd scafold-repo
 
 # Install dependencies
