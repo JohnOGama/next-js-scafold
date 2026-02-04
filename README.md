@@ -18,7 +18,7 @@ Since this tool is not yet published on npm, you need to clone and set it up loc
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/scafold-repo.git
+git clone https://github.com/yourusername/scafold-repo.git](https://github.com/JohnOGama/next-js-scafold
 cd scafold-repo
 
 # Install dependencies
@@ -39,13 +39,12 @@ After linking, the `next-js-scafold` command will be available globally on your 
 
 2. **Create a new Next.js project**:
    ```bash
-   next-js-scafold my-nextjs-app
+   next-js-scafold
    ```
 
 3. **Navigate to your project and install dependencies**:
    ```bash
    cd my-nextjs-app
-   npm install  # or pnpm install, yarn install, bun install
    ```
 
 4. **Start the development server**:
