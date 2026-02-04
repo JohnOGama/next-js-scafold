@@ -1,4 +1,4 @@
-# Scafold
+# Scaffold
 
 A powerful CLI tool to scaffold Next.js projects with a structured, feature-based architecture. Generate production-ready Next.js applications with TypeScript, Tailwind CSS, and a well-organized folder structure.
 
