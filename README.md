@@ -39,13 +39,12 @@ After linking, the `next-js-scafold` command will be available globally on your 
 
 2. **Create a new Next.js project**:
    ```bash
-   next-js-scafold my-nextjs-app
+   next-js-scafold
    ```
 
 3. **Navigate to your project and install dependencies**:
    ```bash
    cd my-nextjs-app
-   npm install  # or pnpm install, yarn install, bun install
    ```
 
 4. **Start the development server**:
