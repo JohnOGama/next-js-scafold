@@ -1,0 +1,42 @@
+{
+  "name": "next-js-scafold",
+  "version": "1.0.0",
+  "description": "A scaffold tool to generate Next.js projects with a structured architecture",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "next-js-scafold": "bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node bin/cli.js",
+    "test": "npm run build && node bin/cli.js test-project --yes",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "scaffold",
+    "nextjs",
+    "generator",
+    "template",
+    "cli"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "chalk": "^5.3.0",
+    "inquirer": "^10.2.2",
+    "ora": "^8.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.17.10",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
