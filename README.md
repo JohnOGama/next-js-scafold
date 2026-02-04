@@ -19,7 +19,7 @@ Since this tool is not yet published on npm, you need to clone and set it up loc
 ```bash
 # Clone the repository
 git clone https://github.com/JohnOGama/next-js-scaffold
-cd scaffold-repo
+cd next-js-scaffold
 
 # Install dependencies
 npm install
