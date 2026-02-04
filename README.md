@@ -18,8 +18,8 @@ Since this tool is not yet published on npm, you need to clone and set it up loc
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/scafold-repo.git](https://github.com/JohnOGama/next-js-scafold
-cd scafold-repo
+git clone https://github.com/yourusername/scaffold-repo.git](https://github.com/JohnOGama/next-js-scaffold
+cd scaffold-repo
 
 # Install dependencies
 npm install
@@ -31,7 +31,7 @@ npm run build
 npm link
 ```
 
-After linking, the `next-js-scafold` command will be available globally on your system.
+After linking, the `next-js-scaffold` command will be available globally on your system.
 
 ## Quick Start
 
@@ -39,7 +39,7 @@ After linking, the `next-js-scafold` command will be available globally on your 
 
 2. **Create a new Next.js project**:
    ```bash
-   next-js-scafold
+   next-js-scaffold
    ```
 
 3. **Navigate to your project and install dependencies**:
@@ -59,7 +59,7 @@ After linking, the `next-js-scafold` command will be available globally on your 
 ### Basic Usage
 
 ```bash
-next-js-scafold my-nextjs-app
+next-js-scaffold my-nextjs-app
 ```
 
 This will start an interactive prompt where you can:
@@ -69,19 +69,19 @@ This will start an interactive prompt where you can:
 ### With Package Manager
 
 ```bash
-next-js-scafold my-nextjs-app --package-manager pnpm
+next-js-scaffold my-nextjs-app --package-manager pnpm
 # or
-next-js-scafold my-nextjs-app -p yarn
+next-js-scaffold my-nextjs-app -p yarn
 # or
-next-js-scafold my-nextjs-app -p bun
+next-js-scaffold my-nextjs-app -p bun
 ```
 
 ### Skip Prompts
 
 ```bash
-next-js-scafold my-nextjs-app --yes
+next-js-scaffold my-nextjs-app --yes
 # or
-next-js-scafold my-nextjs-app -y
+next-js-scaffold my-nextjs-app -y
 ```
 
 This will skip all confirmation prompts and use default settings.
@@ -194,7 +194,7 @@ npm run dev
 ## CLI Options
 
 ```
-Usage: next-js-scafold [project-name] [options]
+Usage: next-js-scaffold [project-name] [options]
 
 Options:
   -p, --package-manager <manager>  Package manager to use (npm, pnpm, yarn, bun) (default: "auto")
