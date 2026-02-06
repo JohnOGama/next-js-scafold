@@ -186,8 +186,25 @@ function getProjectStructure(variables: TemplateVariables) {
       path: 'next.config.ts',
       content: `import type { NextConfig } from "next";
 
+const BACKEND_URL =
+  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001";
+
 const nextConfig: NextConfig = {
   /* config options here */
+  async rewrites() {
+    return [
+      // Proxy API requests to backend (same-origin for cookies)
+      {
+        source: "/api/v1/:path*",
+        destination: \`\${BACKEND_URL}/api/v1/:path*\`,
+      },
+      // Proxy auth requests to backend
+      {
+        source: "/api/auth/:path*",
+        destination: \`\${BACKEND_URL}/api/auth/:path*\`,
+      },
+    ]
+  }
 };
 
 export default nextConfig;
@@ -810,6 +827,53 @@ export const routes = {
 `
     },
     {
+      path: 'src/config/.env.example',
+      content: `# Backend API URL
+NEXT_PUBLIC_BACKEND_URL=http://localhost:3001
+
+# Cookie header name for authentication
+NEXT_PUBLIC_COOKIES_HEADER=my-token-header
+`
+    },
+    {
+      path: 'src/proxy.ts',
+      content: `import { NextRequest, NextResponse } from "next/server";
+import { checkTokenExpiration } from "./shared/utils/checkTokenExpiration";
+
+const publicRoutes = ["/login", "/register", "/forgot-password", "/processing"];
+const cookieHeader = process.env.NEXT_PUBLIC_COOKIES_HEADER || "my-token-header"
+
+export function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  const sessionData = request.cookies.get(cookieHeader);
+  const isTokenExpired = checkTokenExpiration(sessionData?.value || "");
+  const hasValidSession = sessionData?.value && !isTokenExpired;
+
+  // If user has valid session and tries to access public routes, redirect to home
+  if (publicRoutes.includes(pathname)) {
+    if (hasValidSession) {
+      const homeUrl = new URL("/", request.url);
+      return NextResponse.redirect(homeUrl);
+    }
+    return NextResponse.next();
+  }
+
+  // Protected routes - require valid session
+  if (!hasValidSession) {
+    const loginUrl = new URL("/login", request.url);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|api).*)"],
+};
+`
+    },
+    {
       path: 'src/shared/components/CodeBlock.tsx',
       content: `'use client'
 
@@ -941,6 +1005,15 @@ export function useFormWithZod<T extends FieldValues>(
     resolver: zodResolver(schema),
   });
 }
+`
+    },
+    {
+      path: 'src/shared/utils/checkTokenExpiration.ts',
+      content: `export const checkTokenExpiration = (token: string) => {
+  if (!token) return false;
+  // Your logic to check token expiration
+  return true
+};
 `
     },
     {
@@ -1083,8 +1156,15 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
-.env*.local
+# env files (can opt-in for committing if needed)
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+.env.development
+.env.test
+.env.production
 
 # vercel
 .vercel
