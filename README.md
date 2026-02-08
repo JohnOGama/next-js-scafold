@@ -11,6 +11,7 @@ A powerful CLI tool to scaffold Next.js projects with a structured, feature-base
 - 🎨 **Tailwind CSS**: Pre-configured with Tailwind CSS v4
 - 🔧 **Pre-configured**: ESLint, TypeScript, and other tools ready to use
 - 📁 **Feature Modules**: Includes example auth feature with API, services, hooks, and components
+- ⚙️ **Feature Generator**: Built-in CLI to generate feature modules with boilerplate code
 
 ## Installation
 
@@ -53,6 +54,12 @@ After linking, the `next-js-scaffold` command will be available globally on your
    ```
 
 5. **Open [http://localhost:3000](http://localhost:3000)** to see your app.
+
+6. **Generate new features**:
+   ```bash
+   npm run g <FEATURE_NAME>
+   # Example: npm run g user
+   ```
 
 ## Usage
 
@@ -127,6 +134,8 @@ my-nextjs-app/
 │   └── tests/            # Test files
 │       ├── e2e/
 │       └── unit/
+├── scripts/             # CLI scripts
+│   └── generate-feature.js  # Feature generator CLI
 ├── public/               # Static assets
 ├── package.json
 ├── tsconfig.json
@@ -165,6 +174,30 @@ The scaffold includes a complete auth feature example with:
 - React hooks (`useAuth.ts`)
 - Components (`LoginForm.tsx`)
 
+### Feature Generator
+
+Every generated project includes a built-in CLI tool to generate new feature modules:
+
+```bash
+npm run g <FEATURE_NAME>
+```
+
+This command generates a complete feature structure with:
+- `{feature}.api.ts` - API endpoints
+- `{feature}.service.ts` - Service layer
+- `{feature}.type.ts` - TypeScript types
+- `{feature}.validation.ts` - Zod validation schemas
+- `{feature}.store.ts` - Store logic
+- `components/` - Component folder
+- `hooks/` - Custom hooks folder
+
+**Example:**
+```bash
+npm run g user
+```
+
+This creates `src/features/user/` with all the boilerplate files ready to use.
+
 ## Getting Started with Generated Project
 
 After generating a project:
@@ -176,6 +209,23 @@ npm run dev  # or pnpm dev, yarn dev, bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to see your app.
+
+### Generating New Features
+
+Once your project is set up, you can generate new feature modules using the built-in CLI:
+
+```bash
+npm run g <FEATURE_NAME>
+```
+
+**Example:**
+```bash
+npm run g product
+npm run g order
+npm run g payment
+```
+
+Each feature will be generated with a complete structure including API, service, types, validation, store, components, and hooks folders.
 
 ## Development
 
